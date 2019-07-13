@@ -139,6 +139,10 @@ const CreateForm = () => {
     if (!formState.message) {
         error.push('message');
     }
+
+    if (!formState.dateTime) {
+        error.push('dateTime');
+    }
     return error;
   }
 
@@ -190,12 +194,12 @@ const CreateForm = () => {
         </Radio.Group>
       </Form.Item>
       {displayDestinationItem(formState.destination, desitnationDetailsOnChange, formError)}
-      <Form.Item label="Send on the" {...formItemLayout}>
+      <Form.Item label="Send on the" {...formItemLayout} validateStatus={getStatus(formError, 'dateTime')}>
         <DatePicker
         style={{ minWidth: '300px'}}
         format={DATE_TIME_FORMAT}
           onChange={handleDateChange}
-          defaultValue={formState.date}
+          defaultValue={formState.dateTime}
           showTime={{ defaultValue: moment('00:00:00', DATE_TIME_FORMAT) }}
         />
       </Form.Item>
@@ -203,9 +207,11 @@ const CreateForm = () => {
         <Input.TextArea placeholder="message" onChange={messageOnChange} rows={8} />
       </Form.Item>
     </Form>
+    <div className="buttonWrapper">
     <button onClick={onSubmit} className="submitButton">
         Send
     </button>
+    </div>
     </>
   );
 };

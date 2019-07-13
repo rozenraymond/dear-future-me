@@ -1,14 +1,15 @@
 import React from 'react';
 import Form from './Form';
 import './index.css';
+import { Container } from '../HomePage/index.style';
 
 const LetterForm = () => {
     return (
-        <div className="PageWrapper">
+        <Container>
             <h2 className="Hi-Future-Me">Hi future me</h2>
                 <h5 className="Send-a-message-text">Send a message to your future self</h5>
                 <Form />
-        </div>
+        </Container>
     )
 };
 

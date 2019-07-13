@@ -28,9 +28,30 @@
 }
 
 .submitButton {
-  width: 331px;
+  /* width: 331px;
   height: 80px;
   border-radius: 48px;
   background-color: #d55ab4;
+  outline: none; */
+
   outline: none;
+  max-width: 475px;
+  height: 80px;
+  font-family: "Ubuntu";
+  border-radius: 48px;
+  background-color: #d55ab4;
+  font-size: 32px;
+  color: #f2eed8;
+  margin: 2rem;
+  width: 100%;
+}
+
+.submitButton:hover, .submitButton:focus {
+    background-color: #d55ab4;
+    color: #000;
+    border: none;
+}
+
+.buttonWrapper {
+    margin: 0 auto;
 }
