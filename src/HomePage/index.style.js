@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button } from "antd";
 
-const imgBg = require("../assets/pattern0.png");
+export const imgBg = require("../assets/pattern0.png");
 
 export const FullBackground = styled.div`
   height: 100%;
@@ -9,8 +9,8 @@ export const FullBackground = styled.div`
   align-items: center;
   justify-content: center;
   background-repeat: repeat;
-  background-image: url(${imgBg})
   transition: background-image 1s ease-in-out;
+  text-align: center;
 `;
 
 export const Container = styled.div`
@@ -22,7 +22,7 @@ export const Container = styled.div`
 
 export const Heading = styled.h1`
   font-family: "Leckerli One";
-  font-size: 90px;
+  font-size: 86px;
   color: #d55ab4;
 `;
 

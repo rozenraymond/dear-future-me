@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import Layout from "../Layout";
 
 const LetterForm = () => {
-    return (
-        <div>
-            this is the form
-        </div>
-    );
+  return <Layout>this is the form</Layout>;
 };
 
 export default LetterForm;
