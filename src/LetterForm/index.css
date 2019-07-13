@@ -1,0 +1,36 @@
+.Hi-Future-Me {
+    font-family: LeckerliOne;
+    font-size: 60px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #d55ab4;
+  }
+
+.Send-a-message-text {
+    width: 503px;
+    height: 36px;
+    font-family: Ubuntu;
+    font-size: 32px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #0d0d0d;
+    }
+
+.PageWrapper {
+    margin: 0 auto;
+    padding: 30px 50px;
+}
+
+.submitButton {
+  width: 331px;
+  height: 80px;
+  border-radius: 48px;
+  background-color: #d55ab4;
+  outline: none;
+}
