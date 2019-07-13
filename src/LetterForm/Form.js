@@ -9,14 +9,14 @@ import ConfirmationPage from "../ConfirmationPage";
 const DATE_TIME_FORMAT = 'MMMM Do YYYY, h:mm:ss a';
 const { useState } = React;
 const initialState = {
-  recipient: undefined,
-  sender: undefined,
+  recipient: '',
+  sender: '',
   destination: "email",
-  email: undefined,
-  phoneNumber: undefined,
-  address: undefined,
+  email: '',
+  phoneNumber: 0,
+  address: '',
   dateTime: moment(),
-  message: undefined,
+  message: '',
   attachement: false
 };
 
