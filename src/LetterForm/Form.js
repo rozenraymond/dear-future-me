@@ -3,7 +3,6 @@ import { Form, Input, Button, Radio, DatePicker } from "antd";
 import moment from "moment";
 import validator from 'validator';
 import './index.css';
-import { statement } from "@babel/template";
 
 
 const DATE_TIME_FORMAT = 'MMMM Do YYYY, h:mm:ss a';
