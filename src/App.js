@@ -1,32 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Button from 'antd/es/button';
 import HomePage from './HomePage';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LetterForm from './LetterForm';
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    //   <Button type="primary">Button</Button>
-    // </div>
-    <div className="App">
-      <HomePage />
-      <Button type="primary">Create a letter!</Button>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/create-letter" component={LetterForm} />
+        <Route path="/" component={HomePage} />
+      </Switch>
+    </Router>
   );
 }
 
