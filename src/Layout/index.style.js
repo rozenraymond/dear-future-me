@@ -11,6 +11,7 @@ export const FullBackground = styled.div`
   background-image: url(${imgBg});
   transition: background-image 1s ease-in-out;
   text-align: center;
+  overflow: auto;
 `;
 
 export const Container = styled.div`
