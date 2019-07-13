@@ -3,6 +3,7 @@ import { Form, Input, Button, Radio, DatePicker } from "antd";
 import moment from "moment";
 import validator from 'validator';
 import './index.css';
+import { statement } from "@babel/template";
 
 
 const DATE_TIME_FORMAT = 'MMMM Do YYYY, h:mm:ss a';
@@ -14,8 +15,7 @@ const initialState = {
   email: undefined,
   phoneNumber: undefined,
   address: undefined,
-  date: moment(),
-  time: undefined,
+  dateTime: moment(),
   message: undefined,
   attachement: false
 };
@@ -34,20 +34,20 @@ const displayDestinationItem = (destination, onChange, error) => {
   if (destination === "sms") {
     return (
       <Form.Item label="Phone" {...formItemLayout} validateStatus={getStatus(error, 'phoneNumber')}>
-        <Input placeholder="phone number" onChange={onChange} />
+        <Input placeholder="phone number" onChange={(e) => onChange(e.target.value, 'phoneNumber')} />
       </Form.Item>
     );
   }
   if (destination === "mail") {
     return (
       <Form.Item label="Address" {...formItemLayout} validateStatus={getStatus(error, 'address')}>
-        <Input placeholder="address" onChange={onChange} />
+        <Input placeholder="address" onChange={(e) => onChange(e.target.value, 'address')} />
       </Form.Item>
     );
   }
   return (
     <Form.Item label="Email" {...formItemLayout} validateStatus={getStatus(error, 'email')}>
-      <Input placeholder="email" onChange={onChange} />
+      <Input placeholder="email" onChange={(e) => onChange(e.target.value, 'email')} />
     </Form.Item>
   );
 };
@@ -79,14 +79,17 @@ const CreateForm = () => {
     });
   };
 
-  const handleDateChange = e => {
+  const handleDateChange = (dateTimeInMoment) => {
     setError([]);
-    console.log("e", e);
+    setFormState({
+        ...formState,
+        dateTime: dateTimeInMoment,
+    });
   };
 
   function disabledDate(current) {
     // Can not select days before today and today
-    return current && current < moment().endOf("day");
+    return current && current <= moment().startOf();
   }
 
   function disabledDateTime() {
@@ -98,12 +101,18 @@ const CreateForm = () => {
   }
 
   const messageOnChange = e => {
-    console.log('message', e.target.value);
+    setFormState({
+        ...formState,
+        message: e.target.value,
+    });
   }
 
-  const desitnationDetailsOnChange = e => {
+  const desitnationDetailsOnChange = (value, field) => {
     setError([]);
-      console.log(e.target.value);
+    setFormState({
+        ...formState,
+        [field]: value,
+    })
   }
 
   const validateForm = () => {
@@ -114,10 +123,6 @@ const CreateForm = () => {
 
     if (formState.destination === 'sms' && (!formState.phoneNumber || !validator.isMobilePhone(formState.email))) {
         error.push('phoneNumber');
-    }
-
-    if (formState.destination === 'mail' && !formState.address) {
-        error.push('address');
     }
 
     if (formState.destination === 'mail' && !formState.address) {
@@ -140,11 +145,13 @@ const CreateForm = () => {
 
   const onSubmit = async() => {
       const errors = validateForm();
-      console.log('errors', errors);
-    if (errors.length === -1) {
-        console.log('form is valid');
+    if (errors.length === 0) {
         // send it to api 
-
+            // map data to send to api
+            const result = {
+                ...formState,
+                dateTime: moment.utc(formState.dateTime).format(),
+            }
         // go to next page
     }
     setError(errors)
@@ -190,8 +197,6 @@ const CreateForm = () => {
         format={DATE_TIME_FORMAT}
           onChange={handleDateChange}
           defaultValue={formState.date}
-          disabledDate={disabledDate}
-          disabledDateTime={disabledDateTime}
           showTime={{ defaultValue: moment('00:00:00', DATE_TIME_FORMAT) }}
         />
       </Form.Item>
