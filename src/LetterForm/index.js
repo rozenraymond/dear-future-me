@@ -1,15 +1,13 @@
 import React from 'react';
 import Form from './Form';
 import './index.css';
-import { Container } from '../HomePage/index.style';
+import Layout from "../Layout";
 
-const LetterForm = () => {
+const LetterForm = (props) => {
     return (
-        <Container>
-            <h2 className="Hi-Future-Me">Hi future me</h2>
-                <h5 className="Send-a-message-text">Send a message to your future self</h5>
-                <Form />
-        </Container>
+        <Layout>
+            <Form {...props} />
+        </Layout>
     )
 };
 

@@ -3,6 +3,7 @@ import { Form, Input, Button, Radio, DatePicker } from "antd";
 import moment from "moment";
 import validator from 'validator';
 import './index.css';
+import ConfirmationPage from "../ConfirmationPage";
 
 
 const DATE_TIME_FORMAT = 'MMMM Do YYYY, h:mm:ss a';
@@ -66,7 +67,8 @@ function range(start, end) {
     return result;
   }
 
-const CreateForm = () => {
+const CreateForm = (props) => {
+    console.log('props', props);
   const [formState, setFormState] = useState(initialState);
   const [formError, setError] = useState([]);
 
@@ -155,6 +157,7 @@ const CreateForm = () => {
                 ...formState,
                 dateTime: moment.utc(formState.dateTime).format(),
             }
+            props.history.push('/confirmation');
         // go to next page
     }
     setError(errors)
@@ -173,6 +176,17 @@ const CreateForm = () => {
           sender: e.target.value,
       });
 }
+
+    if (props.location.pathname === '/confirmation') {
+        return (
+            <ConfirmationPage 
+                sendDate={formState.dateTime}
+                sendAddress={formState.address || formState.phoneNumber || formState.email}
+                sendMethod={formState.destination}
+                history={props.history}
+            />
+        )
+    }
 
   return (
     <>
@@ -204,7 +218,7 @@ const CreateForm = () => {
         />
       </Form.Item>
       <Form.Item label="Message" {...formItemLayout} validateStatus={getStatus(formError, 'message')}>
-        <Input.TextArea placeholder="message" onChange={messageOnChange} rows={8} />
+        <Input.TextArea placeholder="message" onChange={messageOnChange} rows={6} />
       </Form.Item>
     </Form>
     <div className="buttonWrapper">

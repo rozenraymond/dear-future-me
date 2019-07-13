@@ -24,7 +24,7 @@
 
 .PageWrapper {
     margin: 0 auto;
-    padding: 30px 50px;
+    padding: 10px 50px;
 }
 
 .submitButton {
@@ -42,7 +42,7 @@
   background-color: #d55ab4;
   font-size: 32px;
   color: #f2eed8;
-  margin: 2rem;
+  /* margin: 2rem; */
   width: 100%;
 }
 
