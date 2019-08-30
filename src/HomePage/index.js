@@ -2,9 +2,7 @@ import React from "react";
 import {
   Heading,
   Content,
-  Container,
   StartButton,
-  FullBackground
 } from "./index.style";
 import Layout from "../Layout";
 

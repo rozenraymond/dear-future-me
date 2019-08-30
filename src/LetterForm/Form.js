@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Radio, DatePicker } from "antd";
+import { Form, Input, Radio, DatePicker } from "antd";
 import moment from "moment";
 import validator from "validator";
 import "./index.css";
@@ -24,9 +24,6 @@ const formItemLayout = {
   wrapperCol: { span: 20 }
 };
 
-const buttonItemLayout = {
-  wrapperCol: { span: 14, offset: 4 }
-};
 
 const displayDestinationItem = (destination, onChange, error) => {
   if (destination === "sms") {
@@ -78,16 +75,7 @@ const getStatus = (error = [], field) => {
   return "success";
 };
 
-function range(start, end) {
-  const result = [];
-  for (let i = start; i < end; i++) {
-    result.push(i);
-  }
-  return result;
-}
-
 const CreateForm = props => {
-  console.log("props", props);
   const [formState, setFormState] = useState(initialState);
   const [formError, setError] = useState([]);
 
@@ -107,18 +95,7 @@ const CreateForm = props => {
     });
   };
 
-  function disabledDate(current) {
-    // Can not select days before today and today
-    return current && current <= moment().startOf();
-  }
 
-  function disabledDateTime() {
-    return {
-      disabledHours: () => range(0, 24).splice(4, 20),
-      disabledMinutes: () => range(30, 60),
-      disabledSeconds: () => [55, 56]
-    };
-  }
 
   const messageOnChange = e => {
     setFormState({
@@ -176,12 +153,6 @@ const CreateForm = props => {
   const onSubmit = async () => {
     const errors = validateForm();
     if (errors.length === 0) {
-      // send it to api
-      // map data to send to api
-      const result = {
-        ...formState,
-        dateTime: moment.utc(formState.dateTime).format()
-      };
       props.history.push("/confirmation");
       // go to next page
     }

@@ -16,18 +16,20 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "validator": "^11.1.0",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "prettier-check": "^2.0.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "format": "prettier --write '**/*.{js, jsx, md, json}'"
+    "format": "prettier --write '**/*.{js, jsx, md, json}'",
+    "lint": "prettier-check '**/*.{js, jsx, md, json}'"
   },
   "eslintConfig": {
     "extends": "react-app"
